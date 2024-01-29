@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style></style>
+  </head>
+  <body>
+    <!-- Sign-up form start -->
+    <main>
+      <div class="wrap1">
+        <div class="left-side">
+          <h1>Stay updated!</h1>
+
+          <p class="des">
+            Join 60,000+ product managers receiving monthly updates on:
+          </p>
+          <ul>
+            <li>
+              <span
+                ><img src="assets/images/icon-list.svg" alt="check icon"
+              /></span>
+              Product discovery and building what matters
+            </li>
+            <li>
+              <span
+                ><img src="assets/images/icon-list.svg" alt="check icon"
+              /></span>
+              Measuring to ensure updates are a success
+            </li>
+            <li>
+              <span
+                ><img src="assets/images/icon-list.svg" alt="check icon"
+              /></span>
+              And much more!
+            </li>
+          </ul>
+          <div class="input-box">
+            <div class="text-box">
+              <p>Email address</p>
+              <p class="error-msg">Valid email required</p>
+            </div>
+            <input
+              placeholder="email@company.com"
+              type="email"
+              class="email-input"
+            />
+          </div>
+          <button class="subscribe-btn">Subscribe to monthly newsletter</button>
+        </div>
+        <div class="right-side"></div>
+      </div>
+
+      <!-- Sign-up form end -->
+
+      <!-- Success message start -->
+      <div class="wrap2">
+        <img
+          class="icon-done"
+          src="assets/images/icon-success.svg"
+          alt="check icon"
+        />
+        <h1>Thanks for subscribing!</h1>
+        <p class="des">
+          A confirmation email has been sent to
+          <span class="email"></span>. Please open it and click the button
+          inside to confirm your subscription.
+        </p>
+        <button class="dismiss-btn">Dismiss message</button>
+      </div>
+      <!-- Success message end -->
+
+      <div class="attribution">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io/challenges/newsletter-signup-form-with-success-message-3FC1AZbNrv"
+          target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Astornek</a>.
+      </div>
+    </main>
+    <script>
+      const subcribeBtn = document.querySelector(".subscribe-btn");
+      const emailInput = document.querySelector(".email-input");
+      const errorText = document.querySelector(".error-msg");
+      const wrapOne = document.querySelector(".wrap1");
+      const wrapTwo = document.querySelector(".wrap2");
+      const emailAddress = document.querySelector(".email-input").value;
+      const address = document.querySelector(".email");
+      address.innerText = emailAddress;
+      const dismissBtn = document.querySelector(".dismiss-btn");
+
+      document.querySelector(".subscribe-btn").addEventListener("click", () => {
+        const emailRegex =
+          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+          emailInput.classList.add("active");
+          errorText.classList.add("active");
+        } else {
+          emailInput.classList.remove("active");
+          errorText.classList.remove("active");
+
+          wrapOne.classList.add("close");
+          wrapTwo.classList.add("active");
+        }
+      });
+      document.querySelector(".dismiss-btn").addEventListener("click", () => {
+        wrapTwo.classList.remove("active");
+        wrapOne.classList.remove("close");
+      });
+    </script>
+  </body>
+</html>
